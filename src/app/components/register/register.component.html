@@ -1,0 +1,202 @@
+<p-toast></p-toast>
+<div>
+    <div>
+        <p-card>
+            <ng-template pTemplate="header">
+                <p-steps class="steps" [model]="steps" [(activeIndex)]="activeIndex"></p-steps>
+            </ng-template>
+            <ng-template pTemplate="body">
+                <div *ngIf="(activeIndex == 0)" class="stepsdemo-content">
+                    <p-card>
+                        <ng-template pTemplate="title">
+                            Datos de usuario
+                        </ng-template>
+                        <ng-template pTemplate="subtitle">
+                            Introduzca sus datos de usuario
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <div class="card">
+                                <div class="grid">
+                                    <div class="col-7 flex align-items-center justify-content-center">
+                                        <div>
+                                            <h3>Email</h3>
+                                            <input type="text" pInputText placeholder="Email" [(ngModel)]="email">
+                                            <small *ngIf="((email == '' || email == null) && submitted)"
+                                                class="p-error block"> Email inválido</small>
+                                            <small *ngIf="(userExist)" class="p-error block"> Email ya existe</small>
+                                            <br><br>
+                                            <h3>Nombre</h3>
+                                            <input type="text" pInputText placeholder="Nombre" [(ngModel)]="name">
+                                            <small *ngIf="((name == '' || name == null) && submitted)"
+                                                class="p-error block"> Nombre inválido</small>
+                                            <br><br>
+                                            <h3>Apellidos</h3>
+                                            <input type="text" pInputText placeholder="Apellidos" [(ngModel)]="surname">
+                                            <small *ngIf="((surname == '' || surname == null) && submitted)"
+                                                class="p-error block"> Apellidos inválidos</small>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p-divider layout="vertical" type="dotted"></p-divider>
+                                    </div>
+                                    <div class="col-2 flex align-items-center justify-content-center">
+                                        <div>
+                                            <h3>Contraseña</h3>
+                                            <p-password placeholder="Contraseña" [(ngModel)]="password"
+                                                [toggleMask]="true">
+                                                <ng-template pTemplate="header">
+                                                    <h6>Introduce tu contraseña</h6>
+                                                </ng-template>
+                                                <ng-template pTemplate="footer">
+                                                    <p-divider></p-divider>
+                                                    <p class="mt-2">Sugerencias</p>
+                                                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                                        <li>Al menos una minúscula</li>
+                                                        <li>Al menos una mayúscula</li>
+                                                        <li>Al menos un número</li>
+                                                        <li>Al menos 8 caracteres</li>
+                                                    </ul>
+                                                </ng-template>
+                                            </p-password>
+                                            <small *ngIf="((password== '' || password== null) && submitted)"
+                                                class="p-error block"> Contraseña inválida</small>
+                                            <br><br><br>
+                                            <h3>Contraseña</h3>
+                                            <p-password placeholder="Contraseña" [(ngModel)]="passwordSecure"
+                                                [toggleMask]="true">
+                                                <ng-template pTemplate="header">
+                                                    <h6>Introduce tu contraseña</h6>
+                                                </ng-template>
+                                                <ng-template pTemplate="footer">
+                                                    <p-divider></p-divider>
+                                                    <p class="mt-2">Sugerencias</p>
+                                                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                                        <li>Al menos una minúscula</li>
+                                                        <li>Al menos una mayúscula</li>
+                                                        <li>Al menos un número</li>
+                                                        <li>Al menos 8 caracteres</li>
+                                                    </ul>
+                                                </ng-template>
+                                            </p-password>
+                                            <small *ngIf="((passwordSecure == '' || passwordSecure == null || passwordSecure != password) 
+                                            && submitted)" class="p-error block"> Contraseña inválida</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
+
+                <div *ngIf="(activeIndex == 1)" class="stepsdemo-content">
+                    <p-card>
+                        <ng-template pTemplate="title">
+                            Datos personales
+                        </ng-template>
+                        <ng-template pTemplate="subtitle">
+                            Introduzca sus datos personales
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <div class="card">
+                                <div class="grid">
+                                    <div class="col-7 flex align-items-center justify-content-center">
+                                        <div>
+                                            <h3>Edad</h3>
+                                            <p-inputNumber [(ngModel)]="age" [showButtons]="true" [min]="12" [max]="100"></p-inputNumber>
+                                            <small *ngIf="(age == null && submitted)"
+                                                class="p-error block"> Edad inválida</small>
+                                            <br><br><br>
+                                            <h3>Peso</h3>
+                                            <p-inputNumber [(ngModel)]="weight" [showButtons]="true"
+                                                suffix=" kg" [min]="40" [max]="200"></p-inputNumber>
+                                            <small *ngIf="(weight == null && submitted)"
+                                                class="p-error block"> Peso inválido</small>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p-divider layout="vertical" type="dotted"></p-divider>
+                                    </div>
+                                    <div class="col-2 flex align-items-center justify-content-center">
+                                        <div>
+                                            <h3>Altura</h3>
+                                            <p-inputNumber [(ngModel)]="height" [showButtons]="true"
+                                                suffix=" cm" [min]="140" [max]="240"></p-inputNumber>
+                                            <small *ngIf="(height == null && submitted)"
+                                                class="p-error block"> Altura inválida</small>
+                                            <br><br><br>
+                                            <h3>Género</h3>
+                                            <p-dropdown [options]="genres" [(ngModel)]="genre"
+                                                placeholder="Selecciona género" [showClear]="true"></p-dropdown>
+                                            <small *ngIf="(genre ==  null && submitted)" class="p-error block"> Género
+                                                inválido</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
+
+                <div *ngIf="(activeIndex == 2)" class="stepsdemo-content">
+                    <p-card>
+                        <ng-template pTemplate="title">
+                            Objetivos
+                        </ng-template>
+                        <ng-template pTemplate="subtitle">
+                            Introduzca sus objetivos de entrenamiento
+                        </ng-template>
+                        <ng-template pTemplate="content">
+                            <div class="card">
+                                <div class="grid">
+                                    <div class="col-7 flex align-items-center justify-content-center">
+                                        <div>
+                                            <h3>Días / Semana</h3>
+                                            <p-inputNumber [(ngModel)]="days" [showButtons]="true" [min]="1" [max]="7"></p-inputNumber>
+                                            <small *ngIf="(days == null && submitted)"
+                                                class="p-error block"> Días/Semana inválidos</small>
+                                            <br><br><br>
+                                            <h3>Objetivo</h3>
+                                            <p-dropdown [options]="goals" [(ngModel)]="goal"
+                                                placeholder="Selecciona objetivo" optionLabel="name"
+                                                [showClear]="true"></p-dropdown>
+                                            <small *ngIf="(goal ==  null && submitted)" class="p-error block"> Objetivo
+                                                inválido</small>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p-divider layout="vertical" type="dotted"></p-divider>
+                                    </div>
+                                    <div class="col-2 flex align-items-center justify-content-center">
+                                        <div>
+                                            <h3>Peso objetivo</h3>
+                                            <p-inputNumber [(ngModel)]="weightObjective" [showButtons]="true"
+                                                suffix=" kg" [min]="40" [max]="200"></p-inputNumber>
+                                            <small
+                                                *ngIf="(weightObjective == null && submitted)"
+                                                class="p-error block"> Peso inválido</small>
+                                            <br><br><br>
+                                            <h3>Tipo de entrenamiento</h3>
+                                            <p-dropdown [options]="trainings" [(ngModel)]="training"
+                                                placeholder="Selecciona entrenamiento" optionLabel="name"
+                                                [showClear]="true"></p-dropdown>
+                                            <small *ngIf="(training ==  null && submitted)" class="p-error block"> Tipo
+                                                de entrenamiento inválido</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-card>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <div class="flex justify-content-between">
+                    <p-button label="Volver" (onClick)="back()" icon="pi pi-angle-left"></p-button>
+
+                    <p-button label="Siguiente" (onClick)="nextPage()" icon="pi pi-angle-right"
+                        iconPos="right"></p-button>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

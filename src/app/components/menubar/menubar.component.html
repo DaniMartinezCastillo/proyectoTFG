@@ -1,0 +1,15 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <p-image src="../../assets/logo-GYM-TFG-Mini.png" alt="Image" width="60"></p-image>
+    </ng-template>
+    <ng-template pTemplate="end">
+        <p-menubar [model]="infoUser">
+            <div *ngIf="!isLogged()">
+                <button pButton label="Iniciar sesión" [routerLink]="['/']" icon="pi pi-sign-in"></button>
+            </div>
+            <div *ngIf="isLogged()">
+                <button pButton label="Cerar sesión" [routerLink]="['/']" icon="pi pi-power-off"></button>
+            </div>
+        </p-menubar>
+    </ng-template>
+</p-menubar>

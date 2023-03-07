@@ -1,0 +1,47 @@
+<div>
+    <p-card>
+        <ng-template pTemplate="title">
+            <h1 class="flex h1">Fit App</h1>
+        </ng-template>
+        <p-divider></p-divider>
+        <ng-template pTemplate="content">
+            <div class="grid">
+                <div>
+
+                    <p-image src="../../assets/logo-GYM-TFG.jpg" alt="Image" width="350"></p-image>
+                </div>
+                <div class="col-2">
+                    <p-divider layout="vertical" type="soled"></p-divider>
+                </div>
+                <div class="flex align-items-center">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <h3>Email</h3>
+                            <input type="text" placeholder="Email" label="Email" pInputText [(ngModel)]="email">
+                        </div>
+                        <br><br>
+                        <div class="p-field">
+                            <h3>Contraseña</h3>
+                            <p-password placeholder="Contraseña" [(ngModel)]="password" [feedback]="false"
+                                [toggleMask]="true"></p-password>
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p-divider layout="vertical" type="soled"></p-divider>
+                </div>
+                <div class="col-4 flex align-items-center justify-content-center">
+                    <div class="p-fluid">
+                        <br><br>
+                        <p-button label="Iniciar sesión" icon="pi pi-user" (onClick)="onSubmit()"></p-button>
+                        <br><br>
+                        <p-button label="Registrarse" icon="pi pi-user-plus" routerLink="/register"
+                            styleClass="p-button-success"></p-button>
+                    </div>
+                    <p-toast></p-toast>
+                </div>
+            </div>
+        </ng-template>
+    </p-card>
+</div>

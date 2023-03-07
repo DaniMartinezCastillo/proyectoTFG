@@ -1,0 +1,66 @@
+<app-menubar></app-menubar>
+<div class="flex align-items-center justify-content-center">
+    <div class="col-8 ">
+        <p-card>
+            <ng-template pTemplate="title">
+                <h1>Perfil de Usuario</h1>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="card">
+                    <div class="grid">
+                        <div class="col-12">
+                            <p-divider align="left" type="dashed">
+                                <div>
+                                    <i class="pi pi-user mr-2"></i>
+                                    <b>Datos de usuario</b>
+                                </div>
+                            </p-divider>
+                        </div>
+                        <div class="col-10 flex align-items-center justify-content-center">
+                            <div>
+                                <p><b>Nombre: </b>{{user.name}}</p>
+                                <p><b>Apellidos: </b>{{user.surname}}</p>
+                            </div>
+                            <div class="col-3">
+                                <p-divider layout="vertical" type="dotted"></p-divider>
+                            </div>
+                            <div>
+                                <p><b>Email: </b>{{user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <p-divider align="left" type="dashed">
+                                <div class="inline-flex align-items-center">
+                                    <i class="pi pi-user-plus mr-2"></i>
+                                    <b>Datos Personales / Objetivos</b>
+                                </div>
+                            </p-divider>
+                        </div>
+                        <div class="col-12 flex align-items-center justify-content-center">
+                            <div>
+                                <p><b>Peso: </b>{{user.weight}}</p>
+                                <p><b>Altura: </b>{{user.height}}</p>
+                                <p><b>Edad: </b>{{user.age}}</p>
+                                <p><b>Género: </b>{{user.genre}}</p>
+                            </div>
+                            <div class="col-4">
+                                <p-divider layout="vertical" type="dotted"></p-divider>
+                            </div>
+                            <div>
+                                <p><b>Dias/Semana: </b>{{user.days}}</p>
+                                <p><b>Peso Objetivo: </b>{{user.weightObjective}}</p>
+                                <p><b>Objetivo: </b>{{goal.name}}</p>
+                                <p><b>Tipo de entrenamiento: </b>{{training.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <div class="flex justify-content-center">
+                    <p-button label="Editar" routerLink="/editProfile" icon="pi pi-user-edit"></p-button>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
