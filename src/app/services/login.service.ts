@@ -1,4 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -7,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginService implements OnInit{
 
   constructor(
+    private router: Router,
     private cookies:CookieService
   ) { }
 
@@ -14,13 +17,14 @@ export class LoginService implements OnInit{
 
   // <-- cuando utilicemos una base de datos todas estas funciones se deberán cambiar -->
 
-  login(id:string){
-    this.cookies.set("id", id);
-
+  login(id:number){
+    this.cookies.set("id", id.toString()); //La cookie solo utiliza parametros string
+    this.router.navigate(['portal']);
   }
 
   logout(){
     this.cookies.set("id","");
+    this.router.navigate([""]);
   }
 
   getId(){ 
@@ -31,6 +35,7 @@ export class LoginService implements OnInit{
   isLogged(){
     let cookie = this.getId();
     if (cookie == undefined || cookie == ""){
+      this.router.navigate([""]);
       return false;
     }
     return true;

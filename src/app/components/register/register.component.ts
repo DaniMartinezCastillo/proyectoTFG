@@ -2,14 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
-import { UsersService } from 'src/app/services/users.service';
-import { GoalsService } from 'src/app/services/goals.service';
-import { TrainingsService } from 'src/app/services/trainings.service';
-import { LoginService } from 'src/app/services/login.service';
-
 import { User } from 'src/app/interfaces/user';
 import { Goal } from 'src/app/interfaces/goal';
 import { Training } from 'src/app/interfaces/training';
+
+import { UsersService } from 'src/app/services/users.service';
 
 import { MessageService } from 'primeng/api';
 
@@ -24,12 +21,11 @@ export class RegisterComponent {
 
   activeIndex: number;
   submitted: boolean;
-  userExist: boolean;
 
   users: UsersService["users"];
   genres: string[];
-  goals: GoalsService["goals"];
-  trainings: TrainingsService["trainings"];
+  goals: Goal[];
+  trainings: Training[];
 
   newUser!: User;
 
@@ -51,24 +47,20 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private usersService: UsersService,
-    private goalsService: GoalsService,
-    private trainingsService: TrainingsService,
-    private loginService: LoginService,
     private messageService: MessageService
   ) {
     this.users = this.usersService.getUsers();
     this.genres = ["Hombre", "Mujer"];
-    this.goals = this.goalsService.getGoals();
-    this.trainings = this.trainingsService.getTrainings();
+    this.goals = this.usersService.getGoals();
+    this.trainings = this.usersService.getTrainings();
 
     this.activeIndex = 0;
     this.submitted = false;
-    this.userExist = false;
 
     this.age = 25;
     this.weight = 60.50;
     this.height = 170;
-    this.days = 3;
+    this.days = 4;
     this.weightObjective = 60.50;
   }
 
@@ -123,25 +115,38 @@ export class RegisterComponent {
     }
   }
 
+  userExist() {
+    if (this.email != null) {
+      return this.usersService.userExist(this.email, this.users.length);
+    }
+    return false
+  }
+
   page1() {
-    if ((this.email == null || this.email == '') || (this.name == null || this.name == '') || (this.surname == null || this.surname == '') ||
-      (this.password == null || this.password == '') || (this.passwordSecure != this.password)) {
+    if (
+      (this.email == null || this.email == '') || 
+      (this.name == null || this.name == '') || 
+      (this.surname == null || this.surname == '') ||
+      (this.password == null || this.password == '') || 
+      (this.passwordSecure != this.password)
+    ) {
       this.submitted = true;
     } else {
-      this.email = this.email.toLowerCase();
-      for (let i = 0; i < this.users.length; i++) {
-        if (this.email == this.users[i].email) {
-          this.userExist = true;
-          return;
-        }
+      if (!this.userExist()) {
+        this.email = this.email.toLowerCase();
+        this.activeIndex++;
+        this.submitted = false;
       }
-      this.activeIndex++;
-      this.submitted = false;
     }
   }
 
   page2() {
-    if (this.age == null || this.weight == null || this.height == null || this.genre == null) {
+    if (
+      this.age == null || 
+      this.weight == null || 
+      this.height == null || 
+      this.genre == null
+    ) {
       this.submitted = true;
     } else {
       this.activeIndex++;
@@ -150,7 +155,12 @@ export class RegisterComponent {
   }
 
   page3() {
-    if (this.days == null || this.goal == null || this.weightObjective == null || this.training == null) {
+    if (
+      this.days == null || 
+      this.goal == null || 
+      this.weightObjective == null || 
+      this.training == null
+    ) {
       this.submitted = true;
     } else {
       this.newUser = {
@@ -165,12 +175,11 @@ export class RegisterComponent {
         height: this.height,
         days: this.days,
         weightObjective: this.weightObjective,
-        goalId: this.goal.id,
-        trainingId: this.training.id,
+        idGoal: this.goal.id,
+        idTraining: this.training.id,
       };
       this.usersService.addUser(this.newUser);
-      this.loginService.login(this.newUser.id.toString());//añadimos una cookie con el id del usuario. La cookie solo utiliza parametros string
-      this.router.navigate(['portal']);
+      this.usersService.login(this.newUser.id);//añadimos una cookie con el id del usuario
     };
   }
 }

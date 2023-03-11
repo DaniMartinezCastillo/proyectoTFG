@@ -21,8 +21,12 @@ export class ProfileComponent {
     private usersService: UsersService
   ) {
     this.user = this.usersService.getUserCookie();
-    this.goal = this.usersService.getGoal(this.user.goalId);
-    this.training = this.usersService.getTraining(this.user.trainingId);
+    this.goal = this.usersService.getGoal(this.user.idGoal);
+    this.training = this.usersService.getTraining(this.user.idTraining);
+  }
+
+  isLogged() {
+    return this.usersService.isLogged();
   }
 
 }

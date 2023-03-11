@@ -26,8 +26,8 @@ export class UsersService {
       height: 173,
       days: 3,
       weightObjective: 75.50,
-      goalId: 1,
-      trainingId: 0,
+      idGoal: 1,
+      idTraining: 0,
     },
     {
       id: 1,
@@ -41,8 +41,8 @@ export class UsersService {
       height: 185,
       days: 4,
       weightObjective: 87.50,
-      goalId: 2,
-      trainingId: 1,
+      idGoal: 2,
+      idTraining: 1,
     },
     {
       id: 2,
@@ -56,8 +56,8 @@ export class UsersService {
       height: 164,
       days: 5,
       weightObjective: 60,
-      goalId: 0,
-      trainingId: 0,
+      idGoal: 0,
+      idTraining: 0,
     },
     {
       id: 3,
@@ -71,8 +71,8 @@ export class UsersService {
       height: 173,
       days: 4,
       weightObjective: 65,
-      goalId: 2,
-      trainingId: 1,
+      idGoal: 2,
+      idTraining: 1,
     },
   ]
 
@@ -95,8 +95,23 @@ export class UsersService {
   }
 
   //Funcion que te devuelve el usuario que tiene el id que le pasamos
-  getUser(i: number) {
-    return this.users[i];
+  getUser(id: number) {
+    return this.users[id];
+  }
+
+  //Funcion que te modifica los datos del usuario que le pasas
+  editUser(user: User) {
+    this.users[user.id] = user;
+  }
+
+  userExist(email: string, id: number) {
+    email = email.toLowerCase();
+    for (let i = 0; i < this.users.length; i++) {
+      if (email == this.users[i].email && id != this.users[i].id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   //Esta funcion nos servirá mas tarde para que un usuario pueda consultar sus datos 
@@ -111,18 +126,32 @@ export class UsersService {
     return this.goalsService.getGoal(id);
   }
 
+  //Funcion que te devuelve todos los objetivos
+  getGoals() {
+    return this.goalsService.getGoals();
+  }
+
   //Funcion que te devuelve el tipo de entrenamineto que tiene el id que le pasamos
   getTraining(id:number) {
     return this.trainingService.getTraining(id);
   }
 
-  //Funcion que te modifica los datos del usuario que le pasas
-  editUser(user: User) {
-    for ( let i=0; i<this.users.length; i++){
-      if (user.id == this.users[i].id) {
-        this.users[i] = user;
-        break;
-      }
-    }
+  //Funcion que te devuelve todos los entrenamientos
+  getTrainings() {
+    return this.trainingService.getTrainings();
   }
+
+  login(id:number){
+    this.loginService.login(id);
+  }
+
+  logout() {
+    this.loginService.logout();
+  }
+
+  isLogged() {
+    return this.loginService.isLogged();
+  }
+
+  
 }

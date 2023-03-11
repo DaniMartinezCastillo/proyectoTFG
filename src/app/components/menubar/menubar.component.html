@@ -3,13 +3,22 @@
         <p-image src="../../assets/logo-GYM-TFG-Mini.png" alt="Image" width="60"></p-image>
     </ng-template>
     <ng-template pTemplate="end">
-        <p-menubar [model]="infoUser">
-            <div *ngIf="!isLogged()">
-                <button pButton label="Iniciar sesión" [routerLink]="['/']" icon="pi pi-sign-in"></button>
+
+        <div *ngIf="!isLogged()">
+            <button pButton label="Iniciar sesión" routerLink="" icon="pi pi-sign-in"></button>
+        </div>
+        <div *ngIf="isLogged()">
+            <div *ngIf="user.genre == 'Hombre'">
+                <p-menubar [model]="infoUserMan">
+                    <p-button label="Cerar sesión" (onClick)="logout()" icon="pi pi-power-off"></p-button>
+                </p-menubar>
             </div>
-            <div *ngIf="isLogged()">
-                <button pButton label="Cerar sesión" [routerLink]="['/']" icon="pi pi-power-off"></button>
+            <div *ngIf="user.genre == 'Mujer'">
+                <p-menubar [model]="infoUserWoman">
+                    <p-button label="Cerar sesión" (onClick)="logout()" icon="pi pi-power-off"></p-button>
+                </p-menubar>
             </div>
-        </p-menubar>
+        </div>
+
     </ng-template>
 </p-menubar>

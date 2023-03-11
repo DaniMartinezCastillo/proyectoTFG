@@ -15,7 +15,7 @@
                             Introduzca sus datos de usuario
                         </ng-template>
                         <ng-template pTemplate="content">
-                            <div class="card">
+                            <div class="p-card">
                                 <div class="grid">
                                     <div class="col-7 flex align-items-center justify-content-center">
                                         <div>
@@ -23,7 +23,7 @@
                                             <input type="text" pInputText placeholder="Email" [(ngModel)]="email">
                                             <small *ngIf="((email == '' || email == null) && submitted)"
                                                 class="p-error block"> Email inválido</small>
-                                            <small *ngIf="(userExist)" class="p-error block"> Email ya existe</small>
+                                            <small *ngIf="(userExist())" class="p-error block"> Email ya existe</small>
                                             <br><br>
                                             <h3>Nombre</h3>
                                             <input type="text" pInputText placeholder="Nombre" [(ngModel)]="name">
@@ -97,7 +97,7 @@
                             Introduzca sus datos personales
                         </ng-template>
                         <ng-template pTemplate="content">
-                            <div class="card">
+                            <div class="p-card">
                                 <div class="grid">
                                     <div class="col-7 flex align-items-center justify-content-center">
                                         <div>
@@ -146,12 +146,12 @@
                             Introduzca sus objetivos de entrenamiento
                         </ng-template>
                         <ng-template pTemplate="content">
-                            <div class="card">
+                            <div class="p-card">
                                 <div class="grid">
                                     <div class="col-7 flex align-items-center justify-content-center">
                                         <div>
                                             <h3>Días / Semana</h3>
-                                            <p-inputNumber [(ngModel)]="days" [showButtons]="true" [min]="1" [max]="7"></p-inputNumber>
+                                            <p-inputNumber [(ngModel)]="days" [showButtons]="true" [min]="3" [max]="7"></p-inputNumber>
                                             <small *ngIf="(days == null && submitted)"
                                                 class="p-error block"> Días/Semana inválidos</small>
                                             <br><br><br>

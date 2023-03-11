@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { LoginService } from 'src/app/services/login.service';
+import { User } from 'src/app/interfaces/user';
+
 import { UsersService } from 'src/app/services/users.service';
 
 import { MenuItem } from 'primeng/api';
@@ -10,22 +11,17 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.css']
 })
-export class MenubarComponent implements OnInit {
-
-  existeCookie: boolean = false;
-  items!: MenuItem[];
-  user;
-  infoUser!: MenuItem[];
+export class MenubarComponent {
+  items: MenuItem[];
+  user: User;
+  infoUserMan: MenuItem[];  
+  infoUserWoman: MenuItem[];
 
   constructor(
-    private loginService: LoginService,
     private usersService: UsersService
   ) { 
     this.user = this.usersService.getUserCookie();
-  }
-   
 
-  ngOnInit() {
     this.items = [
       {
         label: 'Home',
@@ -34,9 +30,17 @@ export class MenubarComponent implements OnInit {
       },
     ];
 
-    this.infoUser = [
+    this.infoUserMan = [
       {
         label: 'Bienvenido ' + this.user.name,
+        icon: 'pi pi-user',
+        routerLink: '/profile'
+      },
+    ];
+
+    this.infoUserWoman = [
+      {
+        label: 'Bienvenida ' + this.user.name,
         icon: 'pi pi-user',
         routerLink: '/profile'
       },
@@ -44,11 +48,11 @@ export class MenubarComponent implements OnInit {
   }
 
   logout() {
-    this.loginService.logout();
+    this.usersService.logout();
   }
 
   isLogged() {
-    return this.loginService.isLogged();
+    return this.usersService.isLogged();
   }
 
 }

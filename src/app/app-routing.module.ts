@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
 import { PortalComponent } from './components/portal/portal.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-
-const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot([

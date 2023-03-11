@@ -10,6 +10,6 @@ export interface User {
     height: number,
     days: number,
     weightObjective: number,
-    goalId: number, //id de goal
-    trainingId: number, //id de type
+    idGoal: number, //id de goal
+    idTraining: number, //id de type
 }
