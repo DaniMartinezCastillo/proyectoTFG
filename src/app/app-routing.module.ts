@@ -6,6 +6,7 @@ import { PortalComponent } from './components/portal/portal.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { Error404Component } from './components/error404/error404.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -14,6 +15,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'editProfile', component: EditProfileComponent },
+
+    { path: '**', component: Error404Component }
   ]),],
   exports: [RouterModule]
 })

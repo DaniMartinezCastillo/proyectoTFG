@@ -3,10 +3,6 @@
         <p-image src="../../assets/logo-GYM-TFG-Mini.png" alt="Image" width="60"></p-image>
     </ng-template>
     <ng-template pTemplate="end">
-
-        <div *ngIf="!isLogged()">
-            <button pButton label="Iniciar sesión" routerLink="" icon="pi pi-sign-in"></button>
-        </div>
         <div *ngIf="isLogged()">
             <div *ngIf="user.genre == 'Hombre'">
                 <p-menubar [model]="infoUserMan">

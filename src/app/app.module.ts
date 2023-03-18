@@ -27,6 +27,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { StepsModule } from 'primeng/steps';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { Error404Component } from './components/error404/error404.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     RegisterComponent,
     MenubarComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
