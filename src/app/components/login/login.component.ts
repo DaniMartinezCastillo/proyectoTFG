@@ -41,15 +41,13 @@ export class LoginComponent {
             if (this.users[i].email == this.email) {
               if (this.users[i].password == this.password) {
                 return this.usersService.login(this.users[i].id);//añadimos una cookie con el id del usuario
-              } else {
-                return this.showErrorPassword();
               }
             }
           }
         }
       }
     }
-    return this.showErrorUser();
+    return this.showError();
   }
 
   showErrorNullAll() {
@@ -64,11 +62,7 @@ export class LoginComponent {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Introduzca la contraseña' });
   }
 
-  showErrorPassword() {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Contraseña inválida' });
-  }
-
-  showErrorUser() {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El usuario no existe' });
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario y/o contraseña inválidos' });
   }
 }

@@ -47,7 +47,7 @@ export class UsersService {
     {
       id: 2,
       name: "Elisa",
-      surname: "Martínez Cuevas",
+      surname: "Martínez Castillo",
       email: "elisa@elisa.com",
       password: "elisa",
       age: 16,
