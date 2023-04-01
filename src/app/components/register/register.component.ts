@@ -65,6 +65,7 @@ export class RegisterComponent {
   }
 
   ngOnInit() {
+    //Páginas de registro
     this.steps = [{
       label: 'Datos de usuario',
       command: () => {
@@ -89,6 +90,8 @@ export class RegisterComponent {
     ];
   }
 
+  //Función que te llevará a una página u a otra al pulsar el botón Volver (dependiendo de la 
+  //página en la que estes situado)
   back() {
     switch (this.activeIndex) {
       case 0:
@@ -102,6 +105,8 @@ export class RegisterComponent {
     }
   }
 
+  //Función que te llevará a una función u a otra al pulsar el botón Siguiente (dependiendo de la 
+  //página en la que estes situado)
   nextPage() {
     switch (this.activeIndex) {
       case 0:
@@ -115,6 +120,7 @@ export class RegisterComponent {
     }
   }
 
+  //Función que comprueba si el email introducido ya existe
   userExist() {
     if (this.email != null) {
       return this.usersService.userExist(this.email, this.users.length);
@@ -122,6 +128,7 @@ export class RegisterComponent {
     return false
   }
 
+  //Función que comprueba que los datos introducidos son válidos
   page1() {
     if (
       (this.email == null || this.email == '') || 
@@ -140,6 +147,7 @@ export class RegisterComponent {
     }
   }
 
+  //Función que comprueba que los datos introducidos son válidos
   page2() {
     if (
       this.age == null || 
@@ -154,6 +162,9 @@ export class RegisterComponent {
     }
   }
 
+  //Función que comprueba que los datos introducidos son válidos
+  //Si son válidos querrá decir que todos los datos lo son y por lo tanto
+  //logeará al usuario y lo llevará a la página principal
   page3() {
     if (
       this.days == null || 

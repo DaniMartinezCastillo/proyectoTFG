@@ -23,17 +23,17 @@ export class GoalsService {
 
   constructor() { }
 
-  //Funcion que añade un usuario
+  //Función que añade un objetivo
   addGoal(goal: Goal) {
     this.goals.push(goal);
   }
 
-  //Función que te devuelve los usuarios
+  //Función que devuelve todos los objetivos que hay en la base de datos
   getGoals() {
     return this.goals;
   }
 
-  //Funcion que te devuelve el usuario que tiene el id que le pasamos
+  //Función que devuelve el objetivo que tiene el id que recibe
   getGoal(id: number) {
     return this.goals[id];
   }

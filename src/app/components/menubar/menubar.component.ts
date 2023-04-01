@@ -47,10 +47,12 @@ export class MenubarComponent {
     ];
   }
 
+  //Función que sirve para cerrar sesión
   logout() {
     this.usersService.logout();
   }
 
+  //Función que hará que no puedas entrar a la página si no has iniciado sesión
   isLogged() {
     return this.usersService.isLogged();
   }

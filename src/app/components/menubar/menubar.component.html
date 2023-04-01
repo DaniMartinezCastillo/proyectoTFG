@@ -3,6 +3,7 @@
         <p-image src="../../assets/logo-GYM-TFG-Mini.png" alt="Image" width="60"></p-image>
     </ng-template>
     <ng-template pTemplate="end">
+        <!--Comprueba que se ha iniciado sesión-->
         <div *ngIf="isLogged()">
             <div *ngIf="user.genre == 'Hombre'">
                 <p-menubar [model]="infoUserMan">

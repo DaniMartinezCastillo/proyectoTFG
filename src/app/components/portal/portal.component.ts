@@ -13,6 +13,7 @@ export class PortalComponent {
     private usersService: UsersService
   ) {}
 
+  //Función que hará que no puedas entrar a la página si no has iniciado sesión
   isLogged() {
     return this.usersService.isLogged();
   }

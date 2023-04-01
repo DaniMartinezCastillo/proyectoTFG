@@ -1,15 +1,15 @@
 export interface User {
     id: number,
-    name: string,
-    surname: string,
-    email: string,
-    password: string,
-    age: number,
-    weight: number,
-    genre: string,
-    height: number,
-    days: number,
-    weightObjective: number,
+    name: string, //nombre
+    surname: string, //apellidos
+    email: string, //email
+    password: string, //contraseña
+    age: number, //edad
+    weight: number, //peso
+    genre: string, //género
+    height: number, //altura
+    days: number, //días que entrena a la semana
+    weightObjective: number, //peso objetivo (peso al que desea llegar)
     idGoal: number, //id de goal
     idTraining: number, //id de type
 }

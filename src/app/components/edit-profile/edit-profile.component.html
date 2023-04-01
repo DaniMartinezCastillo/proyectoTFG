@@ -1,4 +1,5 @@
 <app-menubar></app-menubar>
+<!--Comprueba que se ha iniciado sesión-->
 <div *ngIf="isLogged()" class="flex align-items-center justify-content-center">
     <div class="col-8 ">
         <p-card>
@@ -17,6 +18,7 @@
                             </p-divider>
                         </div>
                         <div class="col-10 flex align-items-center justify-content-center">
+                            <!--Datos del usuario logeado con la posibilidad de editarlos-->
                             <div>
                                 <h3>Nombre</h3>
                                 <input type="text" pInputText placeholder="Nombre" [(ngModel)]="user.name">
@@ -162,7 +164,7 @@
 </div>
 
 
-
+<!--Mensaje de confirmación-->
 <p-toast position="bottom-center" [baseZIndex]="5000">
     <ng-template let-message pTemplate="message">
         <div class="p-flex p-flex-column" style="flex: 1">

@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { Error404Component } from './components/error404/error404.component';
 
+//Rutas posibles
 @NgModule({
   imports: [RouterModule.forRoot([
     { path: '', component: LoginComponent },
@@ -16,6 +17,7 @@ import { Error404Component } from './components/error404/error404.component';
     { path: 'profile', component: ProfileComponent },
     { path: 'editProfile', component: EditProfileComponent },
 
+    //Cualquier ruta que no esté escrita anteriormente nos llevará a esta página (función de **)
     { path: '**', component: Error404Component }
   ]),],
   exports: [RouterModule]

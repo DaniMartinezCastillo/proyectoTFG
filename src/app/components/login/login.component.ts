@@ -36,7 +36,7 @@ export class LoginComponent {
         if (this.password == null || this.password == '') {
           return this.showErrorNullPassword();
         } else {
-          this.email = this.email.toLowerCase();
+          this.email = this.email.toLowerCase(); //pasa todo lo escrito a minúscula
           for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].email == this.email) {
               if (this.users[i].password == this.password) {
@@ -50,18 +50,23 @@ export class LoginComponent {
     return this.showError();
   }
 
+  //Mensaje de campos de email y contraseña vacíos
   showErrorNullAll() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Introduzca el email y la contraseña' });
   }
 
+  //Mensaje de campo de email vacío
   showErrorNullEmail() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Introduzca el email' });
   }
 
+  //Mensaje de campo de contraseña vacío
   showErrorNullPassword() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Introduzca la contraseña' });
   }
 
+  //Mensaje de campos de usuario y/o contraseña inválidos (porque el usuario no existe o porque existe pero 
+  //la contraseña introducida es incorrecta)
   showError() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario y/o contraseña inválidos' });
   }

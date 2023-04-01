@@ -20,11 +20,13 @@ export class ProfileComponent {
   constructor(
     private usersService: UsersService
   ) {
+    //Datos del usuario que ha iniciado sesión
     this.user = this.usersService.getUserCookie();
     this.goal = this.usersService.getGoal(this.user.idGoal);
     this.training = this.usersService.getTraining(this.user.idTraining);
   }
 
+  //Función que hará que no puedas entrar a la página si no has iniciado sesión
   isLogged() {
     return this.usersService.isLogged();
   }

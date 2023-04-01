@@ -19,17 +19,17 @@ export class TrainingsService {
 
   constructor() { }
 
-  //Funcion que añade un usuario
+  //Función que añade un tipo de entrenamiento
   addTraining(training: Training) {
     this.trainings.push(training);
   }
 
-  //Función que te devuelve los usuarios
+  //Función que devuelve todos los tipo de entrenamientos que hay en la base de datos
   getTrainings() {
     return this.trainings;
   }
 
-  //Funcion que te devuelve el usuario que tiene el id que le pasamos
+  //Función que devuelve el tipo de entrenamiento que tiene el id que recibe
   getTraining(id: number) {
     return this.trainings[id];
   }
