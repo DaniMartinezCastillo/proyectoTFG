@@ -1,7 +1,7 @@
 <app-menubar></app-menubar>
 <!--Comprueba que se ha iniciado sesión-->
 <div *ngIf="isLogged()" class="flex align-items-center justify-content-center">
-    <div class="col-8 ">
+    <div class="col-8">
         <p-card>
             <ng-template pTemplate="title">
                 <h1>Perfil de Usuario</h1>
@@ -17,17 +17,18 @@
                                 </div>
                             </p-divider>
                         </div>
-                        <div class="col-10 flex align-items-center justify-content-center">
+                        <div class="col-12 flex align-items-center justify-content-center">
                             <!--Datos del usuario logeado-->
                             <div>
                                 <p><b>Nombre: </b>{{user.name}}</p>
                                 <p><b>Apellidos: </b>{{user.surname}}</p>
                             </div>
-                            <div class="col-3">
+                            <div class="col-4">
                                 <p-divider layout="vertical" type="dotted"></p-divider>
                             </div>
                             <div>
                                 <p><b>Email: </b>{{user.email}}</p>
+                                <p><b>Nombre de usuario: </b>{{user.userName}}</p>
                             </div>
                         </div>
                         <div class="col-12">
@@ -40,8 +41,8 @@
                         </div>
                         <div class="col-12 flex align-items-center justify-content-center">
                             <div>
-                                <p><b>Peso: </b>{{user.weight}}</p>
-                                <p><b>Altura: </b>{{user.height}}</p>
+                                <p><b>Peso: </b>{{user.weight}} kg</p>
+                                <p><b>Altura: </b>{{user.height}} cm</p>
                                 <p><b>Edad: </b>{{user.age}}</p>
                                 <p><b>Género: </b>{{user.genre}}</p>
                             </div>
@@ -50,7 +51,7 @@
                             </div>
                             <div>
                                 <p><b>Dias/Semana: </b>{{user.days}}</p>
-                                <p><b>Peso Objetivo: </b>{{user.weightObjective}}</p>
+                                <p><b>Peso Objetivo: </b>{{user.weightObjective}} kg</p>
                                 <p><b>Objetivo: </b>{{goal.name}}</p>
                                 <p><b>Tipo de entrenamiento: </b>{{training.name}}</p>
                             </div>
@@ -60,7 +61,7 @@
             </ng-template>
             <ng-template pTemplate="footer">
                 <div class="flex justify-content-center">
-                    <p-button label="Editar" routerLink="/editProfile" icon="pi pi-user-edit"></p-button>
+                    <p-button title="Editar Perfil" label="Editar" routerLink="/editProfile" icon="pi pi-user-edit"></p-button>
                 </div>
             </ng-template>
         </p-card>

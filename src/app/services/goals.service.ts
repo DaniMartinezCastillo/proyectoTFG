@@ -1,32 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Goal } from '../interfaces/goal';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoalsService {
 
-  goals: Goal[] = [
-    {
-      id: 0,
-      name: "Perder peso",
-    },
-    {
-      id: 1,
-      name: "Mantenerme en forma",
-    },
-    {
-      id: 2,
-      name: "Aumentar músculo",
-    },
-  ]
+  goals: Goal[] = [];
 
-  constructor() { }
-
-  //Función que añade un objetivo
-  addGoal(goal: Goal) {
-    this.goals.push(goal);
-  }
+  constructor(
+    private firebaseService: FirebaseService
+  ) {}
 
   //Función que devuelve todos los objetivos que hay en la base de datos
   getGoals() {
@@ -34,7 +19,19 @@ export class GoalsService {
   }
 
   //Función que devuelve el objetivo que tiene el id que recibe
-  getGoal(id: number) {
-    return this.goals[id];
+  getGoal(id: string) {
+    let _goal!: Goal;
+    for (let goal of this.goals) {
+      if(goal.id == id){
+        _goal = goal;
+        break;
+      }
+    }
+    return _goal;
+  }
+
+  //Función que añade los objetivos en el servidor
+  setGoals(goals: Goal[]){
+    this.goals = goals;
   }
 }

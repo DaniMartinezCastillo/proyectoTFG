@@ -3,9 +3,12 @@
         <ng-template pTemplate="title">
             <h1 class="flex h1">FIT APP</h1>
         </ng-template>
-        <p-divider></p-divider>
+        <br><br>
         <ng-template pTemplate="content">
             <div class="grid">
+                <div class="col-1">
+                    <p-divider layout="vertical" type="soled"></p-divider>
+                </div>
                 <div>
                     <p-image src="../../assets/logo-GYM-TFG.png" alt="Image" width="350"></p-image>
                 </div>
@@ -15,8 +18,8 @@
                 <div class="flex align-items-center">
                     <div class="p-fluid">
                         <div class="p-field">
-                            <h3>Email</h3>
-                            <input type="text" placeholder="Email" label="Email" pInputText [(ngModel)]="email">
+                            <h3>Email / Nombre de usuario</h3>
+                            <input type="text" placeholder="Email / Nombre Usuario" label="Email / Nombre Usuario" pInputText [(ngModel)]="email_username">
                         </div>
                         <br><br>
                         <div class="p-field">

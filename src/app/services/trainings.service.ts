@@ -1,28 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Training } from '../interfaces/training';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrainingsService {
 
-  trainings: Training[] = [
-    {
-      id: 0,
-      name: "Calistenia",
-    },
-    {
-      id: 1,
-      name: "Pesas",
-    },
-  ]
+  trainings: Training[] = []
 
-  constructor() { }
-
-  //Función que añade un tipo de entrenamiento
-  addTraining(training: Training) {
-    this.trainings.push(training);
-  }
+  constructor(
+    private firebaseService: FirebaseService
+  ) {}
 
   //Función que devuelve todos los tipo de entrenamientos que hay en la base de datos
   getTrainings() {
@@ -30,7 +19,19 @@ export class TrainingsService {
   }
 
   //Función que devuelve el tipo de entrenamiento que tiene el id que recibe
-  getTraining(id: number) {
-    return this.trainings[id];
+  getTraining(id: string) {
+    let _training!: Training;
+    for (let training of this.trainings) {
+      if(training.id == id){
+        _training = training;
+        break;
+      }
+    }
+    return _training;
+  }
+
+  //Función que añade los tipos de entrenamiento en el servidor
+  setTrainings(trainings: Training[]){
+    this.trainings = trainings;
   }
 }

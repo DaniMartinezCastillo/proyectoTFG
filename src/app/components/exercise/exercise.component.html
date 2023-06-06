@@ -1,0 +1,27 @@
+<div class="flex align-items-center justify-content-center">
+    <div class="col-12">
+        <p-card>
+            <ng-template pTemplate="title">
+                <h1 class="flex h1">{{data.exercise.name}}</h1>
+            </ng-template>
+            <ng-template pTemplate="content">
+                <div class="grid">
+                    <div>
+                        <p-image [src]="img1" alt="Image" width="350"></p-image>
+                    </div>
+                    <div>
+                        <p-divider layout="vertical" type="soled"></p-divider>
+                    </div>
+                    <div>
+                        <p-image [src]="img2" alt="Image" width="350"></p-image>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <div class="flex justify-content-between">
+                    <p-button label="Close" (onClick)="close()" icon="pi pi-times-circle"></p-button>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>

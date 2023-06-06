@@ -14,32 +14,43 @@ export class LoginService {
   ) { }
 
   //Función que crea el token y te lleva al portal al iniciar sesión
-  login(id:number){
-    this.cookies.set("id", id.toString()); //La cookie solo utiliza parametros string
+  login(userName:string){
+    this.cookies.set("userName", userName); //La cookie solo utiliza parametros string
     this.router.navigate(['portal']);
   }
 
   //Función que elimina el token y te lleva a la página de login al cerrar sesión
   logout(){
-    this.cookies.set("id",""); //Vacía la cookie
+    this.cookies.set("userName",""); //Vacía la cookie
     this.router.navigate([""]);
   }
 
-  //Función que devuelve el id del usuario que habrá iniciado sesión
-  getId(){ 
-    //Se devuelve como string, por lo que para usar el id habra que pasarlo a number
-    return this.cookies.get("id");
+  //Función que devuelve el nombre de usuario del usuario que habrá iniciado sesión
+  getUserName(){ 
+    //Se devuelve como string
+    return this.cookies.get("userName");
   }
 
   //Función que comprobará si aún sigue la sesión iniciada y si ya se ha cerrado sesión 
   //te llevará a la página de login
   isLogged(){
-    let cookie = this.getId();
+    let cookie = this.getUserName();
     //Comprueba que la cookie está vacía
-    if (cookie == undefined || cookie == ""){
+    if (cookie == undefined || cookie == "" ){
       this.router.navigate([""]);
       return false;
     }
     return true;
+  }
+
+  //Función que crea el token con el id del musculo que va a entrenar
+  loginMuscleTraining(id:string){
+    this.cookies.set("muscle", id); //La cookie solo utiliza parametros string
+  }
+
+  //Función que devuelve el entrenamiento para el musculo que haya seleccionado anteriormente el usuario
+  getMuscleTraining(){ 
+    //Se devuelve como string
+    return this.cookies.get("muscle");
   }
 }

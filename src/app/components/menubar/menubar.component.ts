@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { User } from 'src/app/interfaces/user';
-
 import { UsersService } from 'src/app/services/users.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+
+import { User } from 'src/app/interfaces/user';
 
 import { MenuItem } from 'primeng/api';
 
@@ -12,39 +13,49 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./menubar.component.css']
 })
 export class MenubarComponent {
-  items: MenuItem[];
-  user: User;
-  infoUserMan: MenuItem[];  
-  infoUserWoman: MenuItem[];
+  items!: MenuItem[];
+  user!: User;
+  infoUserMan!: MenuItem[];
+  infoUserWoman!: MenuItem[];
 
   constructor(
-    private usersService: UsersService
-  ) { 
-    this.user = this.usersService.getUserCookie();
+    private usersService: UsersService,
+    private firebaseService: FirebaseService
+  ) {}
 
-    this.items = [
-      {
-        label: 'Home',
-        icon: 'pi pi-home',
-        routerLink: '/portal'
-      },
-    ];
+  ngOnInit() {
+    this.firebaseService.getUsers().subscribe((users: User[]) => {
+      this.usersService.setUsers(users);
+      
+      this.user = this.usersService.getUserCookie();
 
-    this.infoUserMan = [
-      {
-        label: 'Bienvenido ' + this.user.name,
-        icon: 'pi pi-user',
-        routerLink: '/profile'
-      },
-    ];
+      this.items = [
+        {
+          title: 'Fit App',
+          label: 'Home',
+          icon: 'pi pi-home',
+          routerLink: '/portal'
+        },
+      ];
 
-    this.infoUserWoman = [
-      {
-        label: 'Bienvenida ' + this.user.name,
-        icon: 'pi pi-user',
-        routerLink: '/profile'
-      },
-    ];
+      this.infoUserMan = [
+        {
+          title: 'Perfil',
+          label: 'Bienvenido ' + this.user.name,
+          icon: 'pi pi-user',
+          routerLink: '/profile'
+        },
+      ];
+
+      this.infoUserWoman = [
+        {
+          title: 'Perfil',
+          label: 'Bienvenida ' + this.user.name,
+          icon: 'pi pi-user',
+          routerLink: '/profile'
+        },
+      ];
+    });
   }
 
   //Función que sirve para cerrar sesión

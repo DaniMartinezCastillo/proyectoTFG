@@ -23,7 +23,7 @@
                                             <input type="text" pInputText placeholder="Email" [(ngModel)]="email">
                                             <small *ngIf="((email == '' || email == null) && submitted)"
                                                 class="p-error block"> Email inválido</small>
-                                            <small *ngIf="(userExist())" class="p-error block"> Email ya existe</small>
+                                            <small *ngIf="(emailExist())" class="p-error block"> Email ya existe</small>
                                             <br><br>
                                             <h3>Nombre</h3>
                                             <input type="text" pInputText placeholder="Nombre" [(ngModel)]="name">
@@ -41,6 +41,12 @@
                                     </div>
                                     <div class="col-2 flex align-items-center justify-content-center">
                                         <div>
+                                            <h3>Nombre de usuario</h3>
+                                            <input type="text" pInputText placeholder="Nombre de usuario" [(ngModel)]="userName" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122)">
+                                            <small *ngIf="((userName == '' || userName == null) && submitted)"
+                                                class="p-error block"> Nombre de usuario inválido</small>
+                                            <small *ngIf="(userNameExist())" class="p-error block"> Nombre de usuario ya existe</small>
+                                            <br><br>
                                             <h3>Contraseña</h3>
                                             <p-password placeholder="Contraseña" [(ngModel)]="password"
                                                 [toggleMask]="true">
@@ -60,7 +66,7 @@
                                             </p-password>
                                             <small *ngIf="((password== '' || password== null) && submitted)"
                                                 class="p-error block"> Contraseña inválida</small>
-                                            <br><br><br>
+                                            <br><br>
                                             <h3>Contraseña</h3>
                                             <p-password placeholder="Contraseña" [(ngModel)]="passwordSecure"
                                                 [toggleMask]="true">

@@ -1,6 +1,8 @@
 <p-menubar [model]="items">
     <ng-template pTemplate="start">
-        <p-image src="../../assets/logo-GYM-TFG-Mini.png" alt="Image" width="60"></p-image>
+        <a title="Fit App" href="/portal">
+            <p-image src="../../assets/logo-GYM-TFG.png" alt="Image" width="60"></p-image>
+        </a>
     </ng-template>
     <ng-template pTemplate="end">
         <!--Comprueba que se ha iniciado sesión-->
@@ -12,7 +14,7 @@
             </div>
             <div *ngIf="user.genre == 'Mujer'">
                 <p-menubar [model]="infoUserWoman">
-                    <p-button label="Cerar sesión" (onClick)="logout()" icon="pi pi-power-off"></p-button>
+                    <p-button title="Cerrar Sesión" label="Cerar Sesión" (onClick)="logout()" icon="pi pi-power-off"></p-button>
                 </p-menubar>
             </div>
         </div>

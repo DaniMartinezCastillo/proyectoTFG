@@ -1,4 +1,88 @@
 <app-menubar></app-menubar>
 <div *ngIf="isLogged()">
-    <p>portal works!</p>
+    <br>
+    <div class="grid justify-content-center">
+        <div class="col-5">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <div class="flex justify-content-center">
+                        DIA 1
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="flex justify-content-center">
+                        <p-menu [model]="items1"></p-menu>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+        <div>
+            <p-divider layout="vertical" type="dotted"></p-divider>
+        </div>
+        <div class="col-5">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <div class="flex justify-content-center">
+                        DIA 2
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="flex justify-content-center">
+                        <p-menu [model]="items2"></p-menu>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+    <br>
+    <div class="grid justify-content-center">
+        <div class="col-5">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <div class="flex justify-content-center">
+                        DIA 3
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="flex justify-content-center">
+                        <p-menu [model]="items3"></p-menu>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+        <div>
+            <p-divider layout="vertical" type="dotted"></p-divider>
+        </div>
+        <div class="col-5">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <div class="flex justify-content-center">
+                        DIA 4
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="flex justify-content-center">
+                        <p-menu [model]="items4"></p-menu>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+    <br>
+    <div class="grid justify-content-center">
+        <div class="col-5">
+            <p-card>
+                <ng-template pTemplate="title">
+                    <div class="flex justify-content-center">
+                        DIA 5
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="flex justify-content-center">
+                        <p-menu [model]="items5"></p-menu>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
 </div>

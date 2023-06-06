@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { Error404Component } from './components/error404/error404.component';
+import { RoutineComponent } from './components/routine/routine.component';
 
 //Rutas posibles
 @NgModule({
@@ -16,6 +17,7 @@ import { Error404Component } from './components/error404/error404.component';
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'editProfile', component: EditProfileComponent },
+    { path: 'routine', component: RoutineComponent },
 
     //Cualquier ruta que no esté escrita anteriormente nos llevará a esta página (función de **)
     { path: '**', component: Error404Component }

@@ -1,0 +1,54 @@
+<app-menubar></app-menubar>
+<!--Comprueba que se ha iniciado sesión-->
+<br>
+<div *ngIf="isLogged()" class="flex align-items-center justify-content-center">
+    <div class="col-12">
+        <p-card>
+            <ng-template pTemplate="title">
+                <h1 class="flex h1">{{muscle.name}}</h1>
+            </ng-template>
+            <p-divider></p-divider>
+            <ng-template pTemplate="content">
+                <div class="grid">
+                    <div>
+                        <p-image src="../../assets/logo-GYM-TFG.png" alt="Image" width="350"></p-image>
+                    </div>
+                    <div class="col-1">
+                        <p-divider layout="vertical" type="soled"></p-divider>
+                    </div>
+                    <div class="flex align-items-center">
+                        <div class="p-fluid">
+                            <div class="p-field">
+                                
+                                <p-button (onClick)="modalExercise(muscle, exercises[0])" styleClass="p-button-link"><h2>{{names[0] + " : " + series[0] + " series x " + repetitions[0] + " reps"}}</h2></p-button>
+                            </div>
+                            <br><br>
+                            <div class="p-field">
+                                <p-button (onClick)="modalExercise(muscle, exercises[1])" styleClass="p-button-link"><h2>{{names[1] + " : " + series[1] + " series x " + repetitions[1] + " reps"}}</h2></p-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p-divider layout="vertical" type="soled"></p-divider>
+                    </div>
+                    <div class="flex align-items-center">
+                        <div class="p-fluid">
+                            <div class="p-field">
+                                <p-button (onClick)="modalExercise(muscle, exercises[2])" styleClass="p-button-link"><h2>{{names[2] + " : " + series[2] + " series x " + repetitions[2] + " reps"}}</h2></p-button>
+                            </div>
+                            <br><br>
+                            <div class="p-field">
+                                <p-button (onClick)="modalExercise(muscle, exercises[3])" styleClass="p-button-link"><h2>{{names[3] + " : " + series[3] + " series x " + repetitions[3] + " reps"}}</h2></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <div class="flex justify-content-center">
+                    <p-button title="Información" label="Información" (onClick)="modalInfoTraining()" icon="pi pi-info-circle"></p-button>
+                </div>
+            </ng-template>
+        </p-card>
+    </div>
+</div>
