@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 import { UsersService } from 'src/app/services/users.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -10,7 +9,7 @@ import { Muscle } from 'src/app/interfaces/muscle';
 
 import { MenuItem } from 'primeng/api';
 
-import { InfoDescansoComponent } from '../info-descanso/info-descanso.component';
+import { CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-portal',
@@ -27,10 +26,12 @@ export class PortalComponent {
   items4!: MenuItem[];
   items5!: MenuItem[];
 
+  visible: boolean = false;
+
   constructor(
     private usersService: UsersService,
     private firebaseService: FirebaseService,
-    private dialog: MatDialog
+    private communication: CommunicationService
   ) { }
 
   ngOnInit() {
@@ -60,6 +61,7 @@ export class PortalComponent {
     for (let muscle of routine) {
       if (muscle == "Descanso") {
         item.push({
+          title: muscle,
           label: muscle,
           icon: 'pi pi-info-circle',
           command: () => {
@@ -69,10 +71,11 @@ export class PortalComponent {
       } else {
         this.muscle = this.usersService.getMuscle(muscle);
         item.push({
+          title: this.muscle.name,
           label: this.muscle.name,
           icon: 'pi pi-info-circle',
           command: () => {
-            this.logginMuscleTraining(muscle);
+            this.setRoutine(muscle, routine);
           },
           routerLink: '/routine'
         });
@@ -82,11 +85,12 @@ export class PortalComponent {
   }
 
   modalInfoDescanso(){
-    this.dialog.open(InfoDescansoComponent);
+    this.visible = true;
   }
 
-  logginMuscleTraining(id: string) {
-    this.usersService.loginMuscleTraining(id);
+  setRoutine(id: string, muscleTraining: Array<string>) {
+    this.communication.setRoutine(id, muscleTraining);
+
   }
 
   //Función que hará que no puedas entrar a la página si no has iniciado sesión

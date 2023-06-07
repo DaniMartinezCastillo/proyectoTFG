@@ -42,15 +42,4 @@ export class LoginService {
     }
     return true;
   }
-
-  //Función que crea el token con el id del musculo que va a entrenar
-  loginMuscleTraining(id:string){
-    this.cookies.set("muscle", id); //La cookie solo utiliza parametros string
-  }
-
-  //Función que devuelve el entrenamiento para el musculo que haya seleccionado anteriormente el usuario
-  getMuscleTraining(){ 
-    //Se devuelve como string
-    return this.cookies.get("muscle");
-  }
 }

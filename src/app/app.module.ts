@@ -10,6 +10,13 @@ import { LoginComponent } from './components/login/login.component';
 import { PortalComponent } from './components/portal/portal.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { Error404Component } from './components/error404/error404.component';
+import { RoutineComponent } from './components/routine/routine.component';
+import { FooterComponent } from './components/footer/footer.component';
+
+import { environment } from '../environments/environment';
 
 import { UsersService } from './services/users.service'
 import { CookieService } from 'ngx-cookie-service';
@@ -26,17 +33,10 @@ import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { StepsModule } from 'primeng/steps';
-import { ProfileComponent } from './components/profile/profile.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
-import { Error404Component } from './components/error404/error404.component';
-import { RoutineComponent } from './components/routine/routine.component';
+import { DialogModule } from 'primeng/dialog';
+
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { InfoTrainingComponent } from './components/info-training/info-training.component';
-import { InfoDescansoComponent } from './components/info-descanso/info-descanso.component';
-import { ExerciseComponent } from './components/exercise/exercise.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
@@ -51,9 +51,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     EditProfileComponent,
     Error404Component,
     RoutineComponent,
-    InfoTrainingComponent,
-    InfoDescansoComponent,
-    ExerciseComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +71,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     MenubarModule,
     MenuModule,
     StepsModule,
-    MatDialogModule,
+    DialogModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())

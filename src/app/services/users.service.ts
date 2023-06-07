@@ -163,18 +163,7 @@ export class UsersService {
   setRoutines(routines: Routine[]){
     this.routineService.setRoutines(routines);
   }
-
-  //Función que creará un token con el id del musculo para entrenar que recibe
-  loginMuscleTraining(id:string){
-    this.loginService.loginMuscleTraining(id);
-  }
-
-  //Función que devuelve el musculoque se haya guardado en la cookie
-  getMuscleCookie() {
-    let id = this.loginService.getMuscleTraining();
-    return this.muscleService.getMuscle(id);
-  }
-
+  
   //Función que devuelve todos los entrenamientos para los musculos que hay
   getMuscles() {
     return this.muscleService.getMuscles();
