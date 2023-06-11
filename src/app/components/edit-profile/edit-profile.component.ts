@@ -9,6 +9,7 @@ import { Goal } from 'src/app/interfaces/goal';
 import { Training } from 'src/app/interfaces/training';
 
 import { MessageService } from 'primeng/api';
+import { Communication } from 'src/app/interfaces/communication';
 
 @Component({
   selector: 'app-edit-profile',
@@ -30,6 +31,8 @@ export class EditProfileComponent {
   passwordSecure!: string;
   goal!: Goal;
   training!: Training;
+  communication!: Communication;
+  numPreviousPage: number = 0;
 
 
   constructor(
@@ -56,6 +59,19 @@ export class EditProfileComponent {
           this.usersService.setTrainings(trainings);
           this.trainings = this.usersService.getTrainings();
           this.training = this.usersService.getTraining(this.user.training);
+
+          this.firebaseService.getCommunications().subscribe((communications: Communication[]) => {
+            this.usersService.setCommunications(communications);
+            if(this.user.id != undefined){
+              this.communication = this.usersService.getCommunication(this.user.id);
+            }
+
+            if (this.numPreviousPage != 3){
+              this.communication.numPage = 3;
+              this.usersService.editCommunication(this.communication);
+              this.numPreviousPage = 3;
+            }
+          });
         });
       });
     });

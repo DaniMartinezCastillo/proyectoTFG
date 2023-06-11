@@ -34,6 +34,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
 import { StepsModule } from 'primeng/steps';
 import { DialogModule } from 'primeng/dialog';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -72,6 +74,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     MenuModule,
     StepsModule,
     DialogModule,
+    BreadcrumbModule,
+    MegaMenuModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())

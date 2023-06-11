@@ -4,7 +4,7 @@
     <div class="col-8 ">
         <p-card>
             <ng-template pTemplate="title">
-                <h1>Editar Perfil de Usuario</h1>
+                <h1 class="flex h1">Editar Perfil de Usuario</h1>
             </ng-template>
             <ng-template pTemplate="content">
                 <div class="p-card">
@@ -160,8 +160,7 @@
                 </div>
             </ng-template>
             <ng-template pTemplate="footer">
-                <div class="flex justify-content-between">
-                    <p-button title="Volver Perfil" label="Volver" routerLink="/profile" icon="pi pi-angle-left"></p-button>
+                <div class="flex justify-content-center">
                     <p-button title="Guardar Cambios" label="Guardar" (onClick)="edit()" icon="pi pi-save"></p-button>
                 </div>
             </ng-template>

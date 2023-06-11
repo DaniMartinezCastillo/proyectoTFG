@@ -7,6 +7,7 @@ import { Goal } from '../interfaces/goal';
 import { Routine } from '../interfaces/routine';
 import { Muscle } from '../interfaces/muscle';
 import { Exercise } from '../interfaces/exercise';
+import { Communication } from '../interfaces/communication';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,25 @@ export class FirebaseService {
   getExercises(): Observable<Exercise[]>{
     const exerciseRef = collection(this.firestore, 'exercise');
     return collectionData(exerciseRef, {idField: 'id'}) as Observable<Exercise[]>;
+  }
+
+  addCommunication(communication: Communication){
+    addDoc(collection(this.firestore, 'communication'),communication);
+  }
+
+  editCommunication(communication: Communication){
+    if(communication.id != undefined){
+      updateDoc(doc(this.firestore, 'communication', communication.id),{
+        idUser: communication.idUser,
+        idMuscle: communication.idMuscle,
+        routine: communication.routine,
+        numPage: communication.numPage
+      });
+    }
+  }
+
+  getCommunications(): Observable<Communication[]>{
+    const communicationRef = collection(this.firestore, 'communication');
+    return collectionData(communicationRef, {idField: 'id'}) as Observable<Communication[]>;
   }
 }

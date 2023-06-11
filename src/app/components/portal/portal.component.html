@@ -4,93 +4,101 @@
     <br>
     <div class="grid justify-content-center">
         <div class="col-5">
-            <p-card>
-                <ng-template pTemplate="title">
-                    <div class="flex justify-content-center">
-                        LUNES
+            <div class="card">
+                <div class="flex title">
+                    LUNES
+                </div>
+                <div class="flex justify-content-center" *ngFor="let item of items1;">
+                    <div *ngIf="item != 'Descanso'">
+                        <button title="{{item.name}}" (click)="setRoutine(item, 1)" routerLink="/routine"><p-image src={{item.icon}} alt="Image" width="40"></p-image> {{item.name}}</button>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="content">
-                    <div class="flex justify-content-center">
-                        <p-menu [model]="items1"></p-menu>
+                    <div *ngIf="item == 'Descanso'">
+                        <button title="{{item}}" (click)="modalInfoDescanso()"><p-image src="../../assets/icons/Descanso.png" alt="Image" width="40"></p-image> {{item}}</button>
                     </div>
-                </ng-template>
-            </p-card>
+                </div>
+            </div>
         </div>
         <div>
             <p-divider layout="vertical" type="dotted"></p-divider>
         </div>
         <div class="col-5">
-            <p-card>
-                <ng-template pTemplate="title">
-                    <div class="flex justify-content-center">
-                        MARTES
+            <div class="card">
+                <div class="flex title">
+                    MARTES
+                </div>
+                <div class="flex justify-content-center" *ngFor="let item of items2;">
+                    <div *ngIf="item != 'Descanso'">
+                        <button title="{{item.name}}" (click)="setRoutine(item, 2)" routerLink="/routine"><p-image src={{item.icon}} alt="Image" width="40"></p-image> {{item.name}}</button>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="content">
-                    <div class="flex justify-content-center">
-                        <p-menu [model]="items2"></p-menu>
+                    <div *ngIf="item == 'Descanso'">
+                        <button title="{{item}}" (click)="modalInfoDescanso()"><p-image src="../../assets/icons/Descanso.png" alt="Image" width="40"></p-image> {{item}}</button>
                     </div>
-                </ng-template>
-            </p-card>
+                </div>
+            </div>
         </div>
     </div>
     <br>
     <div class="grid justify-content-center">
         <div class="col-5">
-            <p-card>
-                <ng-template pTemplate="title">
-                    <div class="flex justify-content-center">
-                        MIÉRCOLES
+            <div class="card">
+                <div class="flex title">
+                    MIÉRCOLES
+                </div>
+                <div class="flex justify-content-center" *ngFor="let item of items3;">
+                    <div *ngIf="item != 'Descanso'">
+                        <button title="{{item.name}}" (click)="setRoutine(item, 3)" routerLink="/routine"><p-image src={{item.icon}} alt="Image" width="40"></p-image> {{item.name}}</button>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="content">
-                    <div class="flex justify-content-center">
-                        <p-menu [model]="items3"></p-menu>
+                    <div *ngIf="item == 'Descanso'">
+                        <button title="{{item}}" (click)="modalInfoDescanso()"><p-image src="../../assets/icons/Descanso.png" alt="Image" width="40"></p-image> {{item}}</button>
                     </div>
-                </ng-template>
-            </p-card>
+                </div>
+            </div>
         </div>
         <div>
             <p-divider layout="vertical" type="dotted"></p-divider>
         </div>
         <div class="col-5">
-            <p-card>
-                <ng-template pTemplate="title">
-                    <div class="flex justify-content-center">
-                        JUEVES
+            <div class="card">
+                <div class="flex title">
+                    JUEVES
+                </div>
+                <div class="flex justify-content-center" *ngFor="let item of items4;">
+                    <div *ngIf="item != 'Descanso'">
+                        <button title="{{item.name}}" (click)="setRoutine(item, 4)" routerLink="/routine"><p-image src={{item.icon}} alt="Image" width="40"></p-image> {{item.name}}</button>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="content">
-                    <div class="flex justify-content-center">
-                        <p-menu [model]="items4"></p-menu>
+                    <div *ngIf="item == 'Descanso'">
+                        <button title="{{item}}" (click)="modalInfoDescanso()"><p-image src="../../assets/icons/Descanso.png" alt="Image" width="40"></p-image> {{item}}</button>
                     </div>
-                </ng-template>
-            </p-card>
+                </div>
+            </div>
         </div>
     </div>
     <br>
     <div class="grid justify-content-center">
         <div class="col-5">
-            <p-card>
-                <ng-template pTemplate="title">
-                    <div class="flex justify-content-center">
-                        VIERNES
+            <div class="card">
+                <div class="flex title">
+                    VIERNES
+                </div>
+                <div class="flex justify-content-center" *ngFor="let item of items5;">
+                    <div *ngIf="item != 'Descanso'">
+                        <button title="{{item.name}}" (click)="setRoutine(item, 5)" routerLink="/routine"><p-image src={{item.icon}} alt="Image" width="40"></p-image>{{item.name}}</button>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="content">
-                    <div class="flex justify-content-center">
-                        <p-menu [model]="items5"></p-menu>
+                    <div *ngIf="item == 'Descanso'">
+                        <button title="{{item}}" (click)="modalInfoDescanso()"><p-image src="../../assets/icons/Descanso.png" alt="Image" width="40"></p-image> {{item}}</button>
                     </div>
-                </ng-template>
-            </p-card>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <p-dialog header="Información sobre los descansos" [(visible)]="visible" [style]="{width: '50vw'}">
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.
     </p>
 </p-dialog>

@@ -5,7 +5,7 @@
     <div class="col-12">
         <p-card>
             <ng-template pTemplate="header">
-                <p-steps class="steps" [model]="items" [readonly]="false" [activeIndex]="activeIndex"></p-steps>
+                <p-steps class="steps stepsEdit" [model]="items" [readonly]="false" [activeIndex]="activeIndex"></p-steps>
             </ng-template>
             <ng-template pTemplate="title">
                 <div *ngIf="(activeIndex < numMuscles)">
@@ -23,7 +23,7 @@
                             <p-divider layout="vertical" type="soled"></p-divider>
                         </div>
                         <div>
-                            <p-image src="../../assets/logo-GYM-TFG.png" alt="Image" width="350"></p-image>
+                            <p-image [src]="muscleImage" alt="Image" width="450"></p-image>
                         </div>
                         <div class="col-1">
                             <p-divider layout="vertical" type="soled"></p-divider>

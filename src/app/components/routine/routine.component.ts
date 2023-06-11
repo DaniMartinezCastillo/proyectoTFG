@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 import { UsersService } from 'src/app/services/users.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
 import { Muscle } from 'src/app/interfaces/muscle';
 import { Exercise } from 'src/app/interfaces/exercise'
-
-import { CommunicationService } from 'src/app/services/communication.service';
+import { Communication } from 'src/app/interfaces/communication';
+import { User } from 'src/app/interfaces/user';
 
 import { MenuItem } from 'primeng/api';
 
@@ -20,6 +19,9 @@ import { Storage, ref, listAll, getDownloadURL } from '@angular/fire/storage';
 })
 export class RoutineComponent {
 
+  muscleImage!: string;
+
+  user!: User;
   idMuscle!: string;
   muscle!: Muscle;
   idMuscles!: Array<string>;
@@ -29,6 +31,9 @@ export class RoutineComponent {
   names: string[] = [];
   series: number[] = [];
   repetitions: number[] = [];
+
+  communication!: Communication;
+  numPreviousPage: number = 0;
 
   items!: MenuItem[];
   activeIndex: number = 0;
@@ -43,42 +48,59 @@ export class RoutineComponent {
   constructor(
     private usersService: UsersService,
     private firebaseService: FirebaseService,
-    private storage: Storage,
-    private communication: CommunicationService
-  ) {}
+    private storage: Storage
+  ) {
 
-  ngOnInit(){
     this.firebaseService.getMuscles().subscribe((muscles: Muscle[]) => {
       this.usersService.setMuscles(muscles);
-      this.idMuscle = this.communication.getIdMuscle()
-      this.muscle = this.usersService.getMuscle(this.idMuscle);
-      this.idMuscles = this.communication.getRoutine();
 
-      this.firebaseService.getExercises().subscribe((exercises: Exercise[]) => {
-        this.usersService.setExercises(exercises);
+      this.firebaseService.getCommunications().subscribe((communications: Communication[]) => {
+        this.usersService.setCommunications(communications);
+        this.user = this.usersService.getUserCookie();
 
-        for(let i = 0; i < this.idMuscles.length; i++){
-          this.routine.push(this.usersService.getMuscle(this.idMuscles[i]));
-          
-          if (this.muscle.id == this.idMuscles[i]){
-            this.activeIndex = i;
-            this.exercises = this.usersService.getExercisesTraining(this.routine[i].exercises);
-            this.exercisesMuscle();
+        this.firebaseService.getExercises().subscribe((exercises: Exercise[]) => {
+          this.usersService.setExercises(exercises);
+          if (this.user.id != undefined) {
+            this.communication = this.usersService.getCommunication(this.user.id);
           }
-        }
 
-        this.numMuscles = this.routine.length;
+          if (this.numPreviousPage != 1){
+            this.communication.numPage = 1;
+            this.usersService.editCommunication(this.communication);
+            this.numPreviousPage = 1;
+          }
+          
+          this.idMuscle = this.communication.idMuscle;
+          this.muscle = this.usersService.getMuscle(this.idMuscle);
+          this.idMuscles = this.communication.routine;
 
-        this.items = (this.addItem());
-        
+          for (let i = 0; i < this.idMuscles.length && this.routine.length < this.idMuscles.length; i++) {
+            this.routine.push(this.usersService.getMuscle(this.idMuscles[i]));
+
+            if (this.muscle.id == this.idMuscles[i]) {
+              this.activeIndex = i;
+              this.exercises = this.usersService.getExercisesTraining(this.routine[i].exercises);
+              this.exercisesMuscle();
+              this.getMuscleImage(this.muscle.name);
+            }
+          }
+
+          this.numMuscles = this.routine.length;
+
+          this.items = (this.addItem());
+        });
       });
     });
   }
 
-  addItem(){
+  ngOnInit() {
+
+  }
+
+  addItem() {
     let item = [];
 
-    for(let i = 0; i < this.routine.length; i++){
+    for (let i = 0; i < this.routine.length; i++) {
       item.push({
         title: this.routine[i].name,
         label: this.routine[i].name,
@@ -87,6 +109,7 @@ export class RoutineComponent {
           this.exercises = this.usersService.getExercisesTraining(this.routine[i].exercises);
           this.activeIndex = i;
           this.exercisesMuscle();
+          this.getMuscleImage(this.muscle.name);
         },
       });
     }
@@ -101,22 +124,39 @@ export class RoutineComponent {
     return item;
   }
 
-  exercisesMuscle(){
+  getMuscleImage(muscle: string) {
+    let reference = muscle + "/Músculo/";
+    const imagesRef = ref(this.storage, reference);
+
+    listAll(imagesRef)
+      .then(async resp => {
+        this.images = [];
+        for (let item of resp.items) {
+          const url = await getDownloadURL(item);
+          this.images.push(url);
+        }
+        this.muscleImage = this.images[0];
+      }).catch(error => {
+        console.log(error);
+      });
+  }
+
+  exercisesMuscle() {
     this.names = [];
     this.series = [];
     this.repetitions = [];
 
-    for(let exercise of this.exercises){
+    for (let exercise of this.exercises) {
       this.names.push(exercise.name);
       this.series.push(exercise.series);
       this.repetitions.push(exercise.repetitions);
     }
   }
 
-  modalExercise(_muscle: Muscle, _exercise: Exercise){
+  modalExercise(_muscle: Muscle, _exercise: Exercise) {
 
     this.nameExercise = _exercise.name;
-    
+
     this.getImages(_muscle.name, _exercise.name);
 
     this.visible = true;
@@ -127,19 +167,19 @@ export class RoutineComponent {
     const imagesRef = ref(this.storage, reference);
 
     listAll(imagesRef)
-      .then( async resp=>{
+      .then(async resp => {
         this.images = [];
-        for(let item of resp.items){
+        for (let item of resp.items) {
           const url = await getDownloadURL(item);
           this.images.push(url);
         }
         this.img1 = this.images[0];
         this.img2 = this.images[1];
-      }).catch(error=>{
+      }).catch(error => {
         console.log(error);
-    });
+      });
   }
-  
+
   //Función que hará que no puedas entrar a la página si no has iniciado sesión
   isLogged() {
     return this.usersService.isLogged();

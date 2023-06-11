@@ -12,6 +12,8 @@ import { Training } from '../interfaces/training';
 import { Routine } from '../interfaces/routine';
 import { Muscle } from '../interfaces/muscle';
 import { Exercise } from '../interfaces/exercise';
+import { Communication } from '../interfaces/communication';
+import { CommunicationService } from './communication.service';
 
 
 
@@ -29,6 +31,7 @@ export class UsersService {
     private routineService: RoutinesService,
     private muscleService: MuscleService,
     private exerciseService: ExerciseService,
+    private communicationService: CommunicationService,
     private firebaseService: FirebaseService
   ) {}
 
@@ -197,6 +200,31 @@ export class UsersService {
   //Función que añade los ejercicios en el servidor
   setExercises(exercises: Exercise[]){
     this.exerciseService.setExercises(exercises);
+  }
+
+  //Función que añade una comunicación más en el servidor
+  addCommunication(communication: Communication){
+    this.communicationService.addCommunication(communication);
+  }
+
+  //Función que devuelve todas las comunicaciones que hay
+  getCommunications() {
+    return this.communicationService.getCommunications();
+  }
+
+  //Función que añade las comunicaciones en el servidor
+  setCommunications(communications: Communication[]){
+    this.communicationService.setCommunications(communications);
+  }
+
+  //Función que te devuelve la comunicación del usuario que tiene el id que recibe
+  getCommunication(idUser: string){
+    return this.communicationService.getCommunication(idUser);
+  }
+
+  //Función que modifica los datos de la comunicacion que recibe
+  editCommunication(communication: Communication) {
+    this.communicationService.editCommunication(communication);
   }
 
   //Función con la que se iniciará sesión y se creará un token con el email del usuario que recibe
