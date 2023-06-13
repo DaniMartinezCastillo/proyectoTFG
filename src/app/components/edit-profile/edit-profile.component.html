@@ -17,12 +17,12 @@
                                 </div>
                             </p-divider>
                         </div>
-                        <div class="col-10 flex align-items-center justify-content-center">
+                        <div class="col-12 flex align-items-center justify-content-center">
                             <!--Datos del usuario logeado con la posibilidad de editarlos-->
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p-divider layout="vertical" type="dotted"></p-divider>
                             </div>
-                            <div>
+                            <div class="col-4">
                                 <h3>Nombre</h3>
                                 <input type="text" pInputText placeholder="Nombre" [(ngModel)]="user.name">
                                 <small *ngIf="((user.name == '' || user.name == null) && submitted)"
@@ -42,10 +42,10 @@
                                     Email inválido</small>
                                 <small *ngIf="(userExist())" class="p-error block"> Email ya existe</small>
                             </div>
-                            <div class="col-3">
+                            <div class="col-1">
                                 <p-divider layout="vertical" type="dotted"></p-divider>
                             </div>
-                            <div>
+                            <div class="col-4">
                                 <h3>Nombre de usuario</h3>
                                 <input type="text" pInputText [disabled]="true" placeholder="Nombre de usuario" [(ngModel)]="user.userName">
                                 <br><br><br>
@@ -69,7 +69,7 @@
                                     class="p-error block">
                                     Contraseña inválida</small>
                                 <br><br><br>
-                                <h3>Contraseña</h3>
+                                <h3>Repetir Contraseña</h3>
                                 <p-password placeholder="Contraseña" [(ngModel)]="passwordSecure" [toggleMask]="true">
                                     <ng-template pTemplate="header">
                                         <h6>Introduce tu contraseña</h6>
@@ -98,7 +98,10 @@
                             </p-divider>
                         </div>
                         <div class="col-12 flex align-items-center justify-content-center">
-                            <div>
+                            <div class="col-1">
+                                <p-divider layout="vertical" type="dotted"></p-divider>
+                            </div>
+                            <div class="col-4">
                                 <h3>Peso</h3>
                                 <p-inputNumber [(ngModel)]="user.weight" [showButtons]="true"
                                     suffix=" kg" [min]="40" [max]="200"></p-inputNumber>
@@ -125,10 +128,10 @@
                                 <small *ngIf="(user.genre ==  null && submitted)" class="p-error block"> Género
                                     inválido</small>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <p-divider layout="vertical" type="dotted"></p-divider>
                             </div>
-                            <div>
+                            <div class="col-4">
                                 <h3>Días / Semana</h3>
                                 <p-inputNumber [(ngModel)]="user.days" [showButtons]="true" [min]="3" [max]="5"></p-inputNumber>
                                 <small *ngIf="(user.days == null && submitted)"

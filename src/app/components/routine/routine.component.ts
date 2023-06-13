@@ -127,6 +127,7 @@ export class RoutineComponent {
   getMuscleImage(muscle: string) {
     let reference = muscle + "/Músculo/";
     const imagesRef = ref(this.storage, reference);
+    this.muscleImage = "";
 
     listAll(imagesRef)
       .then(async resp => {
@@ -165,6 +166,8 @@ export class RoutineComponent {
   getImages(muscle: string, exercise: string) {
     let reference = muscle + "/" + exercise;
     const imagesRef = ref(this.storage, reference);
+    this.img1 = "";
+    this.img2 = "";
 
     listAll(imagesRef)
       .then(async resp => {
