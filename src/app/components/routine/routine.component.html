@@ -1,11 +1,12 @@
 <app-menubar></app-menubar>
 <!--Comprueba que se ha iniciado sesión-->
-<br>
 <div *ngIf="isLogged()" class="flex align-items-center justify-content-center">
+    <br>
     <div class="col-12">
         <p-card>
             <ng-template pTemplate="header">
-                <p-steps class="steps stepsEdit" [model]="items" [readonly]="false" [activeIndex]="activeIndex"></p-steps>
+                <p-steps class="steps stepsEdit" [model]="items" [readonly]="false"
+                    [activeIndex]="activeIndex"></p-steps>
             </ng-template>
             <ng-template pTemplate="title">
                 <div *ngIf="(activeIndex < numMuscles)">
@@ -22,49 +23,66 @@
                         <div>
                             <p-divider layout="vertical" type="soled"></p-divider>
                         </div>
-                        <div>
+                        <div class="col-3">
                             <p-image [src]="muscleImage" alt="Image" width="450"></p-image>
                         </div>
                         <div class="col-1">
                             <p-divider layout="vertical" type="soled"></p-divider>
                         </div>
-                        <div class="flex align-items-center">
-                            <div class="p-fluid">
-                                <div class="p-field">
-                                    <button (click)="modalExercise(muscle, exercises[0])">
-                                        <h2>{{names[0] + " : " + series[0] + " series x " + repetitions[0] + " reps"}}
-                                        </h2>
-                                    </button>
+                        <div class="col-7 flex align-items-center">
+                            <div class="grid">
+                                <div class="col-12 flex align-items-center">
+                                    <div class="col-6 p-fluid">
+                                        <div class="p-field">
+                                            <button (click)="modalExercise(muscle, exercises[0])">
+                                                <h2>{{names[0] + " : " + series[0] + " series x " + repetitions[0] + "
+                                                    reps"}}
+                                                </h2>
+                                            </button>
+                                        </div>
+                                        <br><br>
+                                        <div class="p-field">
+                                            <button (click)="modalExercise(muscle, exercises[1])">
+                                                <h2>{{names[1] + " : " + series[1] + " series x " + repetitions[1] + "
+                                                    reps"}}
+                                                </h2>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <p-divider layout="vertical" type="dotted"></p-divider>
+                                    </div>
+                                    <div class="col-7 p-fluid ">
+                                        <div class="p-field">
+                                            <button (click)="modalExercise(muscle, exercises[2])">
+                                                <h2>{{names[2] + " : " + series[2] + " series x " + repetitions[2] + "
+                                                    reps"}}
+                                                </h2>
+                                            </button>
+                                        </div>
+                                        <br><br>
+                                        <div class="p-field">
+                                            <button (click)="modalExercise(muscle, exercises[3])">
+                                                <h2>{{names[3] + " : " + series[3] + " series x " + repetitions[3] + "
+                                                    reps"}}
+                                                </h2>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <br><br>
-                                <div class="p-field">
-                                    <button (click)="modalExercise(muscle, exercises[1])">
-                                        <h2>{{names[1] + " : " + series[1] + " series x " + repetitions[1] + " reps"}}
-                                        </h2>
-                                    </button>
+                                <div class="col-12">
+                                    <br><br>
+                                </div>
+                                <div class="col-12 flex align-items-center justify-content-center">
+                                    <p-button title="Guardar Entrenamiento" label="Entrenamiento Completado"
+                                        (onClick)="trainingComplete(muscle)" icon="pi pi-save"></p-button>
+                                </div>
+                                <div class="col-12 flex align-items-center justify-content-center">
+                                    <small>*Pulsar sobre los ejercicios para ver una representación de como realizarlos</small>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-1">
-                            <p-divider layout="vertical" type="soled"></p-divider>
-                        </div>
-                        <div class="flex align-items-center">
-                            <div class="p-fluid">
-                                <div class="p-field">
-                                    <button (click)="modalExercise(muscle, exercises[2])">
-                                        <h2>{{names[2] + " : " + series[2] + " series x " + repetitions[2] + " reps"}}
-                                        </h2>
-                                    </button>
-                                </div>
-                                <br><br>
-                                <div class="p-field">
-                                    <button (click)="modalExercise(muscle, exercises[3])">
-                                        <h2>{{names[3] + " : " + series[3] + " series x " + repetitions[3] + " reps"}}
-                                        </h2>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <p-toast></p-toast>
                     </div>
                 </div>
                 <div *ngIf="(activeIndex == numMuscles)" class="stepsdemo-content">

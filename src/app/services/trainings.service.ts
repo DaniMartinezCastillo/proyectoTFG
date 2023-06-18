@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Training } from '../interfaces/training';
+
 import { FirebaseService } from './firebase.service';
+
+import { Training } from '../interfaces/training';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,18 @@ export class TrainingsService {
     let _training!: Training;
     for (let training of this.trainings) {
       if(training.id == id){
+        _training = training;
+        break;
+      }
+    }
+    return _training;
+  }
+
+  //Función que devuelve el tipo de entrenamiento que tiene el nombre que recibe
+  getTrainingName(name: string) {
+    let _training!: Training;
+    for (let training of this.trainings) {
+      if(training.name == name){
         _training = training;
         break;
       }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Muscle } from '../interfaces/muscle';
+
 import { FirebaseService } from './firebase.service';
+
+import { Muscle } from '../interfaces/muscle';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,19 @@ export class MuscleService {
       if(muscle.id == id){
         _muscle = muscle;
         break;
+      }
+    }
+    return _muscle;
+  }
+
+  getMuscleTraining(name: string, training: string){
+    let _muscle!: Muscle;
+    for (let muscle of this.muscles) {
+      if(muscle.name == name){
+        if(muscle.training == training){
+          _muscle = muscle;
+          break;
+        }
       }
     }
     return _muscle;

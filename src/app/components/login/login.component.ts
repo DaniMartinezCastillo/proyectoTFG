@@ -24,7 +24,7 @@ export class LoginComponent {
     private usersService: UsersService,
     private messageService: MessageService,
     private firebaseService: FirebaseService
-  ) {}
+  ) { }
 
   ngOnInit(){
     this.firebaseService.getUsers().subscribe((users: User[])=> {

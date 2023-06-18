@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Communication } from '../interfaces/communication';
+
 import { FirebaseService } from './firebase.service';
+
+import { Communication } from '../interfaces/communication';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, addDoc, updateDoc } from '@angular/fire/firestore';
+
+import { Firestore, collection, collectionData, doc, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+
 import { User } from '../interfaces/user';
 import { Training } from '../interfaces/training';
 import { Goal } from '../interfaces/goal';
@@ -8,6 +10,7 @@ import { Routine } from '../interfaces/routine';
 import { Muscle } from '../interfaces/muscle';
 import { Exercise } from '../interfaces/exercise';
 import { Communication } from '../interfaces/communication';
+import { History } from '../interfaces/history';
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +93,19 @@ export class FirebaseService {
   getCommunications(): Observable<Communication[]>{
     const communicationRef = collection(this.firestore, 'communication');
     return collectionData(communicationRef, {idField: 'id'}) as Observable<Communication[]>;
+  }
+
+  addHistory(history: History){
+    addDoc(collection(this.firestore, 'history'),history);
+  }
+
+  getHistorys(): Observable<History[]>{
+    const historyRef = collection(this.firestore, 'history');
+    return collectionData(historyRef, {idField: 'id'}) as Observable<History[]>;
+  }
+
+  deleteHistory(history: History){
+    const historyDocRef = doc(this.firestore, `history/${history.id}`);
+    return deleteDoc(historyDocRef);
   }
 }

@@ -36,10 +36,13 @@ import { StepsModule } from 'primeng/steps';
 import { DialogModule } from 'primeng/dialog';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { TableModule } from 'primeng/table';
+import { ChartModule } from 'primeng/chart';
 
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { HistoryComponent } from './components/history/history.component';
 
 
 @NgModule({
@@ -53,7 +56,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     EditProfileComponent,
     Error404Component,
     RoutineComponent,
-    FooterComponent
+    FooterComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     DialogModule,
     BreadcrumbModule,
     MegaMenuModule,
+    TableModule,
+    ChartModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())

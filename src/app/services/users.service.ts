@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user';
+
 import { LoginService } from './login.service';
 import { GoalsService } from './goals.service';
 import { TrainingsService } from './trainings.service';
@@ -7,15 +7,17 @@ import { FirebaseService } from './firebase.service';
 import { RoutinesService } from './routines.service';
 import { MuscleService } from './muscle.service';
 import { ExerciseService } from './exercise.service';
+import { CommunicationService } from './communication.service';
+import { HistoryService } from './history.service';
+
+import { User } from '../interfaces/user';
 import { Goal } from '../interfaces/goal';
 import { Training } from '../interfaces/training';
 import { Routine } from '../interfaces/routine';
 import { Muscle } from '../interfaces/muscle';
 import { Exercise } from '../interfaces/exercise';
 import { Communication } from '../interfaces/communication';
-import { CommunicationService } from './communication.service';
-
-
+import { History } from '../interfaces/history';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +34,7 @@ export class UsersService {
     private muscleService: MuscleService,
     private exerciseService: ExerciseService,
     private communicationService: CommunicationService,
+    private historyService: HistoryService,
     private firebaseService: FirebaseService
   ) {}
 
@@ -147,6 +150,11 @@ export class UsersService {
     return this.trainingService.getTraining(id);
   }
 
+  //Función que devuelve el tipo de entrenamiento que tiene el nombre que recibe
+  getTrainingName(name:string) {
+    return this.trainingService.getTrainingName(name);
+  }
+
   //Función que añade los tipos de entrenamiento en el servidor
   setTrainings(trainings: Training[]){
     this.trainingService.setTrainings(trainings);
@@ -175,6 +183,11 @@ export class UsersService {
   //Función que devuelve el musculo que tiene que entrenar
   getMuscle(id: string) {
     return this.muscleService.getMuscle(id);
+  }
+
+  //Función que devuelve el musculo que tiene que entrenar
+  getMuscleTraining(name: string, training: string) {
+    return this.muscleService.getMuscleTraining(name, training);
   }
 
   //Función que añade los músculos en el servidor
@@ -207,7 +220,7 @@ export class UsersService {
     this.communicationService.addCommunication(communication);
   }
 
-  //Función que devuelve todas las comunicaciones que hay
+  //Función que devuelve todas las comunicaciones de la bbdd
   getCommunications() {
     return this.communicationService.getCommunications();
   }
@@ -225,6 +238,31 @@ export class UsersService {
   //Función que modifica los datos de la comunicacion que recibe
   editCommunication(communication: Communication) {
     this.communicationService.editCommunication(communication);
+  }
+
+  //Función que añade un registro de entrenamiento
+  addHistory(history: History) {   
+    this.historyService.addHistory(history);
+  }
+
+  //Función que devuelve todos los registros de entrenamiento de la bbdd
+  getHistorys(){
+    return this.historyService.getHistorys();
+  }
+
+  //Función que devuelve todos los registros de entrenamientos que ha realizado un usuario
+  getHistorysUser(user: User){
+    return this.historyService.getHistorysUser(user);
+  }
+
+  //Función que añade los resgistros de entrenamientos en el servidor
+  setHistorys(historys: History[]){
+    this.historyService.setHistorys(historys);
+  }
+
+  //Función para eliminar un registro de entrenamiento en el servidor
+  deleteHistory(history: History){
+    this.historyService.deleteHistory(history);
   }
 
   //Función con la que se iniciará sesión y se creará un token con el email del usuario que recibe

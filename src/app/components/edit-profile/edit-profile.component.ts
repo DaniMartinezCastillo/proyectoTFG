@@ -7,9 +7,9 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { User } from 'src/app/interfaces/user';
 import { Goal } from 'src/app/interfaces/goal';
 import { Training } from 'src/app/interfaces/training';
+import { Communication } from 'src/app/interfaces/communication';
 
 import { MessageService } from 'primeng/api';
-import { Communication } from 'src/app/interfaces/communication';
 
 @Component({
   selector: 'app-edit-profile',

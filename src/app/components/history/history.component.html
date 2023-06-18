@@ -1,0 +1,106 @@
+<app-menubar></app-menubar>
+<!--Comprueba que se ha iniciado sesión-->
+<br>
+<div *ngIf="isLogged()" class="flex align-items-center justify-content-center">
+    <div class="col-10">
+        <div class="p-card">
+            <div class="grid">
+                <div class="col-12">
+                    <p-table [value]="historys" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                        currentPageReportTemplate="Entrenamientos mostrados: {first} a {last} de {totalRecords} realizados"
+                        [rowsPerPageOptions]="[10, 25, 50]">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width:25%">Músculo</th>
+                                <th style="width:25%">Tipo Entrenamiento</th>
+                                <th style="width:25%">Fecha</th>
+                                <th style="width:10%"></th>
+                                <th style="width:5%"></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-historys>
+                            <tr>
+                                <td>{{ historys.nameMuscle }}</td>
+                                <td>{{ historys.training }}</td>
+                                <td>{{ historys.date | date:'medium' }}</td>
+                                <td><p-button icon="pi pi-info-circle" title="Información" label="Info"
+                                        (onClick)="modalMoreInformation(historys.nameMuscle, historys.training)"></p-button>
+                                </td>
+                                <td><p-button icon="pi pi-trash" title="Eliminar Registro" styleClass="p-button-danger" (onClick)="showConfirm(historys)"></p-button></td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <div class="col-12">
+                <br><br>
+            </div>
+            <div class="col-12 flex align-items-center justify-content-center">
+                <div class="col-4">
+                    <h3 class="h3">Entrenamientos Completados por Músculos</h3>
+                    <p-chart type="pie" [data]="data" [options]="options"></p-chart>
+                </div>
+                <div>
+                    <p-divider layout="vertical" type="dotted"></p-divider>
+                </div>
+                <div class="col-6">
+                    <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog header={{muscleName}} [(visible)]="visible" [style]="{width: '50vw'}">
+    <div class="grid">
+        <div class="col-12 flex align-items-center justify-content-center">
+            <div>
+                <p-image [src]="muscleImage" alt="Image" width="400"></p-image>
+            </div>
+            <div class="col-1">
+                <p-divider layout="vertical" type="dotted"></p-divider>
+            </div>
+            <div>
+                <p-table [value]="muscleExercises">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width:30%">Ejercicio</th>
+                            <th style="width:30%">Series</th>
+                            <th style="width:30%">Repeticiones</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-muscleExercises>
+                        <tr>
+                            <td>{{ muscleExercises.name }}</td>
+                            <td>{{ muscleExercises.series }}</td>
+                            <td>{{ muscleExercises.repetitions }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<!--Mensaje de confirmación-->
+<p-toast position="bottom-center" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="p-text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h3><b>{{message.summary}}</b></h3>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="p-grid p-fluid flex justify-content-center">
+                <div class="p-col-6">
+                    <p-button (onClick)="clear()" label="No" styleClass="p-button-secondary"></p-button>
+                </div>
+                <div class="col-2">
+                    <p-divider layout="vertical" type="dotted"></p-divider>
+                </div>
+                <div class="p-col-6">
+                    <p-button (onClick)="deleteHistory()" label="Sí" styleClass="p-button-success"></p-button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>

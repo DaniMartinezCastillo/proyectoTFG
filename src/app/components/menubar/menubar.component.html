@@ -22,15 +22,18 @@
             <div class="card flex justify-content-center" *ngIf="numPage == 3">
                 <p-breadcrumb class="max-w-full" [model]="items3" [home]="home"></p-breadcrumb>
             </div>
+            <div class="card flex justify-content-center" *ngIf="numPage == 4">
+                <p-breadcrumb class="max-w-full" [model]="items4" [home]="home"></p-breadcrumb>
+            </div>
         </div>
 
     </ng-template>
     <ng-template pTemplate="end">
         <!--Comprueba que se ha iniciado sesión-->
-        <div *ngIf="isLogged()">
+        <div *ngIf="isLogged()" class="grid">
             <div *ngIf="user.genre == 'Hombre'">
                 <p-menubar [model]="infoUserMan">
-                    <p-button label="Cerar sesión" (onClick)="logout()" icon="pi pi-power-off"></p-button>
+                    <p-button title="Cerrar Sesión" label="Cerar sesión" (onClick)="logout()" icon="pi pi-power-off"></p-button>
                 </p-menubar>
             </div>
             <div *ngIf="user.genre == 'Mujer'">

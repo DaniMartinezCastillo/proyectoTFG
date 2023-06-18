@@ -26,7 +26,7 @@
                 <div class="flex title">
                     MARTES
                 </div>
-                <div class="flex justify-content-center" *ngFor="let item of items2;">
+                <div class="flex justify-content-center" *ngFor="let item of items2">
                     <div *ngIf="item != 'Descanso'">
                         <button title="{{item.name}}" (click)="setRoutine(item, 2)" routerLink="/routine"><p-image src={{item.icon}} alt="Image" width="40"></p-image> {{item.name}}</button>
                     </div>

@@ -7,15 +7,17 @@ import { Muscle } from 'src/app/interfaces/muscle';
 import { Exercise } from 'src/app/interfaces/exercise'
 import { Communication } from 'src/app/interfaces/communication';
 import { User } from 'src/app/interfaces/user';
+import { History } from 'src/app/interfaces/history';
 
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 import { Storage, ref, listAll, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-routine',
   templateUrl: './routine.component.html',
-  styleUrls: ['./routine.component.css']
+  styleUrls: ['./routine.component.css'],
+  providers: [MessageService]
 })
 export class RoutineComponent {
 
@@ -47,10 +49,12 @@ export class RoutineComponent {
 
   constructor(
     private usersService: UsersService,
+    private messageService: MessageService,
     private firebaseService: FirebaseService,
     private storage: Storage
-  ) {
+  ) { }
 
+  ngOnInit() {
     this.firebaseService.getMuscles().subscribe((muscles: Muscle[]) => {
       this.usersService.setMuscles(muscles);
 
@@ -64,12 +68,12 @@ export class RoutineComponent {
             this.communication = this.usersService.getCommunication(this.user.id);
           }
 
-          if (this.numPreviousPage != 1){
+          if (this.numPreviousPage != 1) {
             this.communication.numPage = 1;
             this.usersService.editCommunication(this.communication);
             this.numPreviousPage = 1;
           }
-          
+
           this.idMuscle = this.communication.idMuscle;
           this.muscle = this.usersService.getMuscle(this.idMuscle);
           this.idMuscles = this.communication.routine;
@@ -91,10 +95,6 @@ export class RoutineComponent {
         });
       });
     });
-  }
-
-  ngOnInit() {
-
   }
 
   addItem() {
@@ -181,6 +181,24 @@ export class RoutineComponent {
       }).catch(error => {
         console.log(error);
       });
+  }
+
+  trainingComplete(muscle: Muscle) {
+    if (this.user.userName != undefined) {
+      let history = {
+        userName: this.user.userName,
+        nameMuscle: muscle.id,
+        date: Date.now(),
+        training: this.user.training,
+      }
+      this.usersService.addHistory(history);
+      this.showSaveTraining();
+    }
+  }
+
+  //Mensaje de entrenamiento guardado
+  showSaveTraining() {
+    this.messageService.add({ severity: 'success', summary: 'Guardado', detail: 'Entrenamiento Guardado Correctamente' });
   }
 
   //Función que hará que no puedas entrar a la página si no has iniciado sesión

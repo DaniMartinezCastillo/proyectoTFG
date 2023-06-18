@@ -17,6 +17,7 @@ export class MenubarComponent {
   user!: User;
   infoUserMan!: MenuItem[];
   infoUserWoman!: MenuItem[];
+  history!: MenuItem[];
 
   numPage!: number;
   communication!: Communication;
@@ -25,6 +26,7 @@ export class MenubarComponent {
   items1!: MenuItem[];
   items2!: MenuItem[];
   items3!: MenuItem[];
+  items4!: MenuItem[];
 
   constructor(
     private usersService: UsersService,
@@ -50,8 +52,15 @@ export class MenubarComponent {
         this.items1 = [{ label: 'Rutina', routerLink: '/routine' }];
         this.items2 = [{ label: 'Perfil', routerLink: '/profile' }];
         this.items3 = [{ label: 'Pefil', routerLink: '/profile' }, { label: 'Editar Perfil', routerLink: '/editProfile' }];
+        this.items4 = [{ label: 'Historial', routerLink: '/history' }];
 
         this.infoUserMan = [
+          {
+            title: 'Historial',
+            label: 'Historial',
+            icon: 'pi pi-chart-bar',
+            routerLink: '/history'
+          },
           {
             title: 'Perfil',
             label: 'Bienvenido ' + this.user.name,
@@ -61,6 +70,12 @@ export class MenubarComponent {
         ];
 
         this.infoUserWoman = [
+          {
+            title: 'Historial',
+            label: 'Historial',
+            icon: 'pi pi-chart-bar',
+            routerLink: '/history'
+          },
           {
             title: 'Perfil',
             label: 'Bienvenida ' + this.user.name,

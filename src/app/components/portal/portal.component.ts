@@ -8,8 +8,6 @@ import { Routine } from 'src/app/interfaces/routine';
 import { Muscle } from 'src/app/interfaces/muscle';
 import { Communication } from 'src/app/interfaces/communication';
 
-import { MegaMenuItem, MenuItem } from 'primeng/api';
-
 @Component({
   selector: 'app-portal',
   templateUrl: './portal.component.html',
